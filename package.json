@@ -1,5 +1,5 @@
 {
-  "name": "OpenPoliceDataVisuals",
+  "name": "open-police-data-visual",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -28,14 +28,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JasonOuyang8000/webpack-react-boilerplate.git"
+    "url": "git+https://github.com/JasonOuyang8000/open-police-data-visual.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JasonOuyang8000/webpack-react-boilerplate/issues"
+    "url": "https://github.com/JasonOuyang8000/open-police-data-visual/issues"
   },
-  "homepage": "https://github.com/JasonOuyang8000/webpack-react-boilerplate#readme",
+  "homepage": "https://github.com/JasonOuyang8000/open-police-data-visual.git",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
