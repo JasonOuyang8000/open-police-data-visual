@@ -4,6 +4,9 @@
     "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "no-console": "off"
+    },
+    "globals": {
+      "fetch": false
     }
   }
   
