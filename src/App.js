@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import data from './assets/data.json';
+import './style.scss';
 
 const App = () => {
   // eslint-disable-next-line no-unused-vars
@@ -11,7 +12,12 @@ const App = () => {
 
   console.log(data);
   return (
-    <div />
+    data.length
+    && (
+    <div className="full-width">
+      hello
+    </div>
+    )
   );
 };
 
