@@ -14,7 +14,6 @@ import React from 'react';
 const HBarGraph = ({ data, color, title }) => {
   const FlexibleXYPlot = makeWidthFlexible(XYPlot);
 
-  console.log(data);
   return (
     <>
       <h3 style={{ color }} className="mb-5 text-center">{title}</h3>

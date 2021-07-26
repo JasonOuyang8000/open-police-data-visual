@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+import moment from 'moment';
+
 export const makeBarData = (barData) => {
   const data = [];
   Object.keys(barData).forEach((key) => {
@@ -55,6 +58,15 @@ export const getAmountCharged = (data) => {
 
 export const getStatus = (data, key) => {
   const statusObj = {};
+  if (key === 'com_record_submitted') {
+    for (let i = 0; i < data.length; i++) {
+      const name = moment(data[i][key]).format('YYYY-MM-DD');
+      statusObj[name] = name in statusObj ? statusObj[name] + 1 : 1;
+    }
+
+    return makeBarData(statusObj);
+  }
+
   for (let i = 0; i < data.length; i++) {
     const name = data[i][key];
     statusObj[name] = name in statusObj ? statusObj[name] + 1 : 1;

@@ -3,8 +3,11 @@ import data from './assets/data.json';
 import './style.scss';
 import 'bootstrap/scss/bootstrap.scss';
 import BarGraph from './BarGraph';
-import { getAmountCharged, getStatus, getStatusAlleged } from './helpers';
+import {
+  getAmountCharged, getStatus, getStatusAlleged,
+} from './helpers';
 import HBarGraph from './HBarGraph';
+import TimeGraph from './TimeGraph';
 
 const App = () => {
   // eslint-disable-next-line no-unused-vars
@@ -13,6 +16,9 @@ const App = () => {
   useEffect(() => {
     setTotalData(data);
   }, []);
+
+  console.log(totalData);
+  console.log(getStatus(totalData, 'com_record_submitted'));
 
   return (
     totalData.length > 0
@@ -29,6 +35,9 @@ const App = () => {
           </div>
           <div className="col-12 mt-5">
             <HBarGraph data={getStatusAlleged(totalData, 'com_alleg_list')} color="#6A66A3" title="Types of Allegations" />
+          </div>
+          <div className="col-12 mt-5">
+            <TimeGraph data={getStatus(totalData, 'com_record_submitted')} color="#B3CBB9" title="Types of Allegations" />
           </div>
         </div>
       </div>
