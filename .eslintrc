@@ -3,7 +3,9 @@
     "extends": ["airbnb"],
     "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "no-console": "off"
+      "no-console": "off",
+      "react/self-closing-comp": "off",
+      "react/prop-types": "off"
     },
     "globals": {
       "fetch": false

@@ -50,9 +50,12 @@
     "@nivo/bar": "^0.73.1",
     "@nivo/core": "^0.73.0",
     "axios": "^0.21.1",
+    "bootstrap": "^5.0.2",
     "buffer": "^6.0.3",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-vis": "^1.11.7",
     "stream": "^0.0.2",
     "xml-js": "^1.6.11"
   }
