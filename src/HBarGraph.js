@@ -20,7 +20,7 @@ const HBarGraph = ({ data, color, title }) => {
       <FlexibleXYPlot
         height={500}
         yType="ordinal"
-        margin={{ left: 150 }}
+        margin={{ left: 250 }}
       >
         <VerticalGridLines />
         <HorizontalGridLines />
