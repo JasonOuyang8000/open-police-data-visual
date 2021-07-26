@@ -56,7 +56,8 @@ export const getAmountCharged = (data) => {
   return dataArray;
 };
 
-export const getStatus = (data, key) => {
+// eslint-disable-next-line no-unused-vars
+export const getStatus = (data, key, def = false) => {
   const statusObj = {};
   if (key === 'com_record_submitted') {
     for (let i = 0; i < data.length; i++) {
@@ -64,6 +65,37 @@ export const getStatus = (data, key) => {
       statusObj[name] = name in statusObj ? statusObj[name] + 1 : 1;
     }
 
+    return makeBarData(statusObj);
+  }
+
+  if (def) {
+    for (let i = 0; i < data.length; i++) {
+      if ((typeof data[i][key]) === 'object') {
+        let name = null;
+        if (!Array.isArray(data[i][key].off)) {
+          name = 'Single Officer';
+          statusObj[name] = name in statusObj ? statusObj[name] + 1 : 1;
+        } else {
+          name = 'Multiple Officers';
+          statusObj[name] = name in statusObj ? statusObj[name] + 1 : 1;
+        }
+      }
+    }
+    return makeBarData(statusObj);
+  }
+
+  if (key === 'officers') {
+    for (let i = 0; i < data.length; i++) {
+      let name = null;
+      if ((typeof data[i][key]) === 'undefined') {
+        name = 'Unidentified Officers';
+        statusObj[name] = name in statusObj ? statusObj[name] + 1 : 1;
+      } else {
+        name = 'Identified Officers';
+        statusObj[name] = name in statusObj ? statusObj[name] + 1 : 1;
+      }
+      // statusObj[name] = name in statusObj ? statusObj[name] + 1 : 1;
+    }
     return makeBarData(statusObj);
   }
 
