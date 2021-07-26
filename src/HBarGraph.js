@@ -5,29 +5,29 @@ import {
   YAxis,
   VerticalGridLines,
   HorizontalGridLines,
-  VerticalBarSeries,
-  VerticalBarSeriesCanvas,
+  HorizontalBarSeries,
   makeWidthFlexible,
 } from 'react-vis';
 import '../node_modules/react-vis/dist/style.css';
 import React from 'react';
 
-const BarGraph = ({ data, color, title }) => {
+const HBarGraph = ({ data, color, title }) => {
   const FlexibleXYPlot = makeWidthFlexible(XYPlot);
 
+  console.log(data);
   return (
     <>
       <h3 style={{ color }} className="mb-5 text-center">{title}</h3>
       <FlexibleXYPlot
-        xType="ordinal"
-        height={300}
-        xDistance={100}
+        height={500}
+        yType="ordinal"
+        margin={{ left: 150 }}
       >
         <VerticalGridLines />
         <HorizontalGridLines />
         <XAxis />
         <YAxis />
-        <VerticalBarSeries
+        <HorizontalBarSeries
           data={data}
           color={color}
         />
@@ -36,4 +36,4 @@ const BarGraph = ({ data, color, title }) => {
   );
 };
 
-export default BarGraph;
+export default HBarGraph;
