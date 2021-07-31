@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // eslint-disable-next-line no-unused-vars
 import moment from 'moment';
 
@@ -117,4 +118,44 @@ export const getStatusAlleged = (data, key) => {
     });
   }
   return makeBarDataY(statusObj);
+};
+
+export const convertGraphData = (data) => {
+  const statusObj = {};
+  for (let i = 0; i < data.length; i++) {
+    let civil = null;
+    if ((Array.isArray(data[i].civilians.civ))) {
+      civil = data[i].civilians.civ;
+    } else {
+      civil = [data[i].civilians.civ];
+    }
+    civil.forEach((c) => {
+      // eslint-disable-next-line camelcase
+      const { physical_desc } = c;
+      // const race = physical_desc.phys.physical_desc_race;
+      // eslint-disable-next-line camelcase
+      if ('phys' in physical_desc) {
+        if ('physical_desc_race' in physical_desc.phys) {
+          if ('phys_race' in physical_desc.phys.physical_desc_race) {
+            if ('phys_race_race' in physical_desc.phys.physical_desc_race.phys_race) {
+              statusObj[physical_desc.phys.physical_desc_race.phys_race.phys_race_race] = physical_desc.phys.physical_desc_race.phys_race.phys_race_race in statusObj ? statusObj[physical_desc.phys.physical_desc_race.phys_race.phys_race_race] + 1 : 1;
+            } else {
+              statusObj['Decline or Unknown'] = 'Decline or Unknown' in statusObj ? statusObj['Decline or Unknown'] + 1 : 1;
+            }
+          } else {
+            statusObj['Decline or Unknown'] = 'Decline or Unknown' in statusObj ? statusObj['Decline or Unknown'] + 1 : 1;
+          }
+        } else {
+          statusObj['Decline or Unknown'] = 'Decline or Unknown' in statusObj ? statusObj['Decline or Unknown'] + 1 : 1;
+        }
+      } else {
+        statusObj['Decline or Unknown'] = 'Decline or Unknown' in statusObj ? statusObj['Decline or Unknown'] + 1 : 1;
+      }
+
+      // if (race) {
+      //   console.log(race.phys.physical_desc_race);
+      // }
+    });
+  }
+  return makeBarData(statusObj);
 };

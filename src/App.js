@@ -4,11 +4,12 @@ import './style.scss';
 import 'bootstrap/scss/bootstrap.scss';
 import BarGraph from './BarGraph';
 import {
-  getAmountCharged, getStatus, getStatusAlleged,
+  getAmountCharged, getStatus, getStatusAlleged, convertGraphData,
 } from './helpers';
 import HBarGraph from './HBarGraph';
 import TimeGraph from './TimeGraph';
 import MultipleBarGraph from './MultiBarGraph';
+import CircleGraph from './CircleGraph';
 
 const App = () => {
   // eslint-disable-next-line no-unused-vars
@@ -17,9 +18,8 @@ const App = () => {
   useEffect(() => {
     setTotalData(data);
   }, []);
-  console.log(getStatus(totalData, 'officers'));
-  console.log(getStatus(totalData, 'officers', true));
-  console.log(data);
+  console.log(totalData);
+  console.log(convertGraphData(totalData));
 
   return (
     totalData.length > 0
@@ -42,6 +42,9 @@ const App = () => {
           </div>
           <div className="col-12 mt-5">
             <MultipleBarGraph dataOne={getStatus(totalData, 'officers')} dataTwo={getStatus(totalData, 'officers', true)} colorOne="#84A9C0" colorTwo="#ddd8b8" />
+          </div>
+          <div className="col-12">
+            <CircleGraph data={convertGraphData(totalData)} />
           </div>
         </div>
       </div>

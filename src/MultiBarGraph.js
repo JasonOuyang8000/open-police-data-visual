@@ -26,7 +26,6 @@ const MultipleBarGraph = ({
         <YAxis />
         <VerticalBarSeries className="vertical-bar-series-example" data={dataOne} color={colorOne} />
         <VerticalBarSeries data={dataTwo} color={colorTwo} />
-        <LabelSeries getLabel={(d) => d.x} />
       </FlexibleXYPlot>
     </>
   );
