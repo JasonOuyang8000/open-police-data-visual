@@ -8,14 +8,16 @@ import {
 const CircleGraph = ({ data }) => {
   const dataTotal = data.reduce((prev, curr) => prev + Object.values(curr)[1], 0);
 
-  const formatData = data.map((d) => ({
+  const colors = ['0FA3B1', 'B5E2FA', 'F9F7F3', 'EDDEA4', '28FFBF', '64C9CF', 'FDEFEF', 'FFB740', 'DF711B'];
+  const formatData = data.map((d, i) => ({
     label: Object.values(d)[0],
     subLabel: `${Object.values(d)[0]} : ${((Object.values(d)[1] / dataTotal) * 100).toFixed(2)}%`,
     angle: Object.values(d)[1],
+    color: `#${colors[i]}`,
   }));
-
+  console.log(formatData);
   console.log(dataTotal);
-  const ITEMS = data.map((d) => `${Object.values(d)[0]} : ${((Object.values(d)[1] / dataTotal) * 100).toFixed(2)}%`);
+  const ITEMS = data.map((d, i) => ({ title: `${Object.values(d)[0]} : ${((Object.values(d)[1] / dataTotal) * 100).toFixed(2)}%`, color: `#${colors[i]}`, strokeWidth: '20' }));
   const [value, setValue] = useState(null);
 
   return (
@@ -25,7 +27,8 @@ const CircleGraph = ({ data }) => {
         data={formatData}
         height={600}
         width={600}
-        animation
+        style={{ stroke: '#fff', strokeWidth: '1' }}
+        colorType="literal"
         onValueMouseOver={(v) => setValue({ ...v, percent: v.subLabel, label: v.label })}
         labelsAboveChildren
       >
@@ -41,7 +44,7 @@ const CircleGraph = ({ data }) => {
 
       </RadialChart>
 
-      <DiscreteColorLegend height={350} width={200} items={ITEMS} />
+      <DiscreteColorLegend height={500} width={600} items={ITEMS} style={{ fontSize: 20 }} />
     </div>
 
   );
