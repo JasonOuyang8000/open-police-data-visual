@@ -44,7 +44,7 @@ const App = () => {
             <MultipleBarGraph dataOne={getStatus(totalData, 'officers')} dataTwo={getStatus(totalData, 'officers', true)} colorOne="#84A9C0" colorTwo="#ddd8b8" />
           </div>
           <div className="col-12">
-            <CircleGraph data={convertGraphData(totalData)} />
+            {totalData && <CircleGraph data={convertGraphData(totalData)} /> }
           </div>
         </div>
       </div>
