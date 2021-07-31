@@ -10,12 +10,12 @@ const CircleGraph = ({ data }) => {
 
   const formatData = data.map((d) => ({
     label: Object.values(d)[0],
-    subLabel: ((Object.values(d)[1] / dataTotal) * 100).toFixed(2),
+    subLabel: `${Object.values(d)[0]} : ${((Object.values(d)[1] / dataTotal) * 100).toFixed(2)}%`,
     angle: Object.values(d)[1],
   }));
 
   console.log(dataTotal);
-  const ITEMS = data.map((d) => (Object.values(d)[0]));
+  const ITEMS = data.map((d) => `${Object.values(d)[0]} : ${((Object.values(d)[1] / dataTotal) * 100).toFixed(2)}%`);
   const [value, setValue] = useState(null);
 
   return (
@@ -26,10 +26,18 @@ const CircleGraph = ({ data }) => {
         height={600}
         width={600}
         animation
-        onValueMouseOver={(v) => setValue(v)}
+        onValueMouseOver={(v) => setValue({ ...v, percent: v.subLabel, label: v.label })}
         labelsAboveChildren
       >
-        {value && <Hint value={value} /> }
+        {value && (
+        <Hint animation align={{ vertical: 'top', horizontal: 'left' }} value={value} style={{ fontSize: 20 }}>
+          <div className="p-3" style={{ fontSize: 12, color: '#fff', background: 'black' }}>
+            {' '}
+            {value.percent}
+            {' '}
+          </div>
+        </Hint>
+        )}
 
       </RadialChart>
 
