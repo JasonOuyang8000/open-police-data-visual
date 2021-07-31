@@ -30,7 +30,7 @@ const CircleGraph = ({ data }) => {
         labelsAboveChildren
       >
         {value && (
-        <Hint animation align={{ vertical: 'top', horizontal: 'left' }} value={value} style={{ fontSize: 20 }}>
+        <Hint animation align={{ vertical: 'auto', horizontal: 'bottom' }} value={value} style={{ fontSize: 20 }}>
           <div className="p-3" style={{ fontSize: 12, color: '#fff', background: 'black' }}>
             {' '}
             {value.percent}
